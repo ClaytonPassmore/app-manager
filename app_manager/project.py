@@ -17,7 +17,7 @@ class Project(object):
         execute('screen -dmS {} {}'.format(self.name, config.get_start_command(self.name)))
 
     def stop(self):
-        execute('screen -S {} -X stuff $\'\cc\''.format(self.name))
+        execute('screen -S {} -p 0 -X stuff $\'\cc\''.format(self.name))
 
     def attach(self):
         execute('screen -r {}'.format(self.name))
