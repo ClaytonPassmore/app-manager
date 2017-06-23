@@ -25,6 +25,8 @@ def attach():
 def start():
     parser = ArgumentParser(description='Start an app')
     parser.add_argument('project', help='The app to start')
+    parser.add_argument('-s', '--setup', action='store_true', default=False, dest='setup',
+                        help='Run setup commands before starting apps')
     args = parser.parse_args()
 
     project_list = [args.project]
@@ -35,7 +37,10 @@ def start():
         print('This app has not been configured. Check your {}'.format(config.CONFIG_FILE))
 
     for project in project_list:
-        Project(project).start()
+        proj = Project(project)
+        if args.setup:
+            proj.setup()
+        proj.start()
 
 
 def stop():
@@ -55,12 +60,14 @@ def stop():
             Project(project).stop()
         except:
             print('Could not stop {}. Was it running?'.format(project))
-            return
+        sleep(0.2)
 
 
 def restart():
     parser = ArgumentParser(description='Restart a running app')
     parser.add_argument('project', help='The app to restart')
+    parser.add_argument('-s', '--setup', action='store_true', default=False, dest='setup',
+                        help='Run setup commands before starting apps')
     args = parser.parse_args()
 
     project_list = [args.project]
@@ -79,6 +86,8 @@ def restart():
             print('Could not stop {}. Was it running?'.format(project))
 
         sleep(1)
+        if args.setup:
+            proj.setup()
         proj.start()
 
 
