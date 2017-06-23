@@ -27,8 +27,12 @@ def start():
     parser.add_argument('project', help='The app to start')
     parser.add_argument('-s', '--setup', action='store_true', default=False, dest='setup',
                         help='Run setup commands before starting apps')
+    parser.add_argument('-a', '--attach', action='store_true', default=False, dest='attach',
+                        help='Start the app in attached mode')
     args = parser.parse_args()
 
+
+    start_attached = args.attach and args.project != 'all'
     project_list = [args.project]
 
     if args.project == 'all':
@@ -40,7 +44,7 @@ def start():
         proj = Project(project)
         if args.setup:
             proj.setup()
-        proj.start()
+        proj.start(start_attached=start_attached)
 
 
 def stop():
@@ -68,8 +72,11 @@ def restart():
     parser.add_argument('project', help='The app to restart')
     parser.add_argument('-s', '--setup', action='store_true', default=False, dest='setup',
                         help='Run setup commands before starting apps')
+    parser.add_argument('-a', '--attach', action='store_true', default=False, dest='attach',
+                        help='Start the app in attached mode')
     args = parser.parse_args()
 
+    start_attached = args.attach and args.project != 'all'
     project_list = [args.project]
 
     if args.project == 'all':
@@ -88,7 +95,7 @@ def restart():
         sleep(1)
         if args.setup:
             proj.setup()
-        proj.start()
+        proj.start(start_attached=start_attached)
 
 
 def show():
