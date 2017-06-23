@@ -14,7 +14,7 @@ class Config(object):
         return project in self.config.keys()
 
     def get_setup_commands(self, project):
-        return self.config[project]['setup']
+        return self.config[project].get('setup', [])
 
     def get_start_command(self, project):
         return self.config[project]['start']
