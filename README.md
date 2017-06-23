@@ -8,7 +8,7 @@ Run the following:
 brew install python && brew install screen
 
 # Clone the repo
-git clone $THIS_REPO
+git clone git@github.com:ClaytonPassmore/app-manager.git
 
 # Install the package
 pip install -e ./app-manager
