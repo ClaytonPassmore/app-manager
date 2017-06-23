@@ -23,7 +23,7 @@ class Config(object):
         return self.config.keys()
 
     def get_directory(self, project):
-        return self.config[project]['root']
+        return expanduser(self.config[project]['root'])
 
 
 config = Config()

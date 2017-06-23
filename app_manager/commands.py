@@ -2,8 +2,9 @@ import os
 from argparse import ArgumentParser
 from time import sleep
 
-from project import Project
 from config import config
+from project import Project
+from utils import execute
 
 
 def attach():
@@ -79,3 +80,15 @@ def restart():
 
         sleep(1)
         proj.start()
+
+
+def show():
+    parser = ArgumentParser(description='Show details about an app')
+    parser.add_argument('filter', help='The filter to apply (e.g. "alive")')
+    args = parser.parse_args()
+
+    if args.filter == 'alive':
+        try:
+            execute('screen -list')
+        except:
+            pass

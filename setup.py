@@ -11,6 +11,7 @@ setup(
             'stop=app_manager.commands:stop',
             'restart=app_manager.commands:restart',
             'attach=app_manager.commands:attach',
+            'show=app_manager.commands:show'
         ]
     },
     install_requires=['pyyaml']
