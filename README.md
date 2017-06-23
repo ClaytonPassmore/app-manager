@@ -14,6 +14,23 @@ git clone $THIS_REPO
 pip install -e ./app-manager
 ```
 
+## Configure
+Create the following file: `~/.app_manager.yml`.
+
+Fill it with the apps you want to run in the following format:
+```yml
+<project name>:
+  root: <directory of app>
+  start: <command to execute to start the app>
+  setup:
+    - <list of commands to execute before startup>
+    - <e.g. npm install>
+    - <e.g. bundle install>
+<second project>:
+  ...
+```
+
+
 ## Commands
 Installing this package gives you the following commands:
 
