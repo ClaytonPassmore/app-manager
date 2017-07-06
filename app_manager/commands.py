@@ -100,7 +100,7 @@ def restart():
 
 def show():
     parser = ArgumentParser(description='Show details about an app')
-    parser.add_argument('filter', help='The filter to apply (e.g. "alive")')
+    parser.add_argument('filter', help='The filter to apply (e.g. all, alive)')
     args = parser.parse_args()
 
     if args.filter == 'alive':
