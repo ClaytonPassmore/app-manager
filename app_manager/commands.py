@@ -108,3 +108,6 @@ def show():
             execute('screen -list')
         except:
             pass
+    elif args.filter == 'all':
+        for project in sorted(config.get_all_projects()):
+            print(project)
