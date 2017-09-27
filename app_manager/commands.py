@@ -105,7 +105,7 @@ def show():
 
     if args.filter == 'alive':
         try:
-            execute('screen -list')
+            execute('tmux ls')
         except:
             pass
     elif args.filter == 'all':

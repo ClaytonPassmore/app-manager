@@ -15,14 +15,15 @@ class Project(object):
     def start(self, start_attached=False):
         os.chdir(config.get_directory(self.name))
 
-        opts = '-dmS'
+        opts = '-d -s'
         if start_attached:
-            opts = '-S'
+            opts = '-s'
 
-        execute('screen {} {} {}'.format(opts, self.name, config.get_start_command(self.name)))
+        execute('tmux new-session {} {} {}'.format(opts, self.name, config.get_start_command(self.name)))
 
     def stop(self):
-        execute('screen -S {} -p 0 -X stuff $\'\cc\''.format(self.name))
+        print("The stop command is no longer supported")
+        # execute('screen -S {} -p 0 -X stuff $\'\cc\''.format(self.name))
 
     def attach(self):
-        execute('screen -r {}'.format(self.name))
+        execute('tmux attach -t {}'.format(self.name))
