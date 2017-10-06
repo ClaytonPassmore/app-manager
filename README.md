@@ -1,11 +1,11 @@
 # App Manager
-Manage your apps with the help of screen!
+Manage your apps with the help of tmux!
 
 ## Install
 Run the following:
 ```bash
 # Install pre-reqs
-brew install python && brew install screen
+brew install python && brew install tmux
 
 # Clone the repo
 git clone git@github.com:ClaytonPassmore/app-manager.git
@@ -47,20 +47,6 @@ optional arguments:
   -h, --help    show this help message and exit
   -s, --setup   Run setup commands before starting apps
   -a, --attach  Start the app in attached mode
-```
-
-
-### `stop`
-```
-usage: stop [-h] project
-
-Stop a running app
-
-positional arguments:
-  project     The app to stop
-
-optional arguments:
-  -h, --help  show this help message and exit
 ```
 
 
