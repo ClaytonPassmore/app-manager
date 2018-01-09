@@ -22,8 +22,7 @@ class Project(object):
         execute('tmux new-session {} {} {}'.format(opts, self.name, config.get_start_command(self.name)))
 
     def stop(self):
-        print("The stop command is no longer supported")
-        # execute('screen -S {} -p 0 -X stuff $\'\cc\''.format(self.name))
+        execute('tmux send-keys -t {} C-c'.format(self.name))
 
     def attach(self):
         execute('tmux attach -t {}'.format(self.name))
