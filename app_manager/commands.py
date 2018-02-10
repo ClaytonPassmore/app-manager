@@ -1,14 +1,15 @@
 import os
-from argparse import ArgumentParser
 from time import sleep
 
 from config import config
+from decorators import command_line_wrapper
 from project import Project
 from utils import execute
 
 
-def attach():
-    parser = ArgumentParser(description='Attach a running app')
+@command_line_wrapper
+def attach(parser):
+    parser.description = 'Attach a running app'
     parser.add_argument('project', help='The app to attach')
     args = parser.parse_args()
 
@@ -22,8 +23,9 @@ def attach():
         return
 
 
-def start():
-    parser = ArgumentParser(description='Start an app')
+@command_line_wrapper
+def start(parser):
+    parser.description = 'Start an app'
     parser.add_argument('project', help='The app to start')
     parser.add_argument('-s', '--setup', action='store_true', default=False, dest='setup',
                         help='Run setup commands before starting apps')
@@ -47,8 +49,9 @@ def start():
         proj.start(start_attached=start_attached)
 
 
-def stop():
-    parser = ArgumentParser(description='Stop a running app')
+@command_line_wrapper
+def stop(parser):
+    parser.description = 'Stop a running app'
     parser.add_argument('project', help='The app to stop')
     args = parser.parse_args()
 
@@ -67,8 +70,9 @@ def stop():
         sleep(0.2)
 
 
-def restart():
-    parser = ArgumentParser(description='Restart a running app')
+@command_line_wrapper
+def restart(parser):
+    parser.description = 'Restart a running app'
     parser.add_argument('project', help='The app to restart')
     parser.add_argument('-s', '--setup', action='store_true', default=False, dest='setup',
                         help='Run setup commands before starting apps')
@@ -98,8 +102,9 @@ def restart():
         proj.start(start_attached=start_attached)
 
 
-def show():
-    parser = ArgumentParser(description='Show details about an app')
+@command_line_wrapper
+def show(parser):
+    parser.description = 'Show details about an app'
     parser.add_argument('filter', help='The filter to apply (e.g. all, alive)')
     args = parser.parse_args()
 
