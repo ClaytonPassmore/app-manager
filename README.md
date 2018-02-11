@@ -36,59 +36,61 @@ Installing this package gives you the following commands:
 
 ### `start`
 ```
-usage: start [-h] [-s] [-a] project
+usage: start [-h] [-v] [-s] [-a] app
 
 Start an app
 
 positional arguments:
-  project       The app to start
+  app            The app to start
 
 optional arguments:
-  -h, --help    show this help message and exit
-  -s, --setup   Run setup commands before starting apps
-  -a, --attach  Start the app in attached mode
+  -h, --help     show this help message and exit
+  -v, --verbose  Show error stack traces
+  -s, --setup    Run setup commands before starting
+  -a, --attach   Start the app in attached mode
 ```
 
 
 ### `attach`
 ```
-usage: attach [-h] project
+usage: attach [-h] [-v] app
 
 Attach a running app
 
 positional arguments:
-  project     The app to attach
+  app            The app to attach
 
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help     show this help message and exit
+  -v, --verbose  Show error stack traces
 ```
 
 
 ### `restart`
 ```
-usage: restart [-h] [-s] [-a] project
+usage: restart [-h] [-v] [-s] [-a] app
 
 Restart a running app
 
 positional arguments:
-  project       The app to restart
+  app            The app to restart
 
 optional arguments:
-  -h, --help    show this help message and exit
-  -s, --setup   Run setup commands before starting apps
-  -a, --attach  Start the app in attached mode
+  -h, --help     show this help message and exit
+  -v, --verbose  Show error stack traces
+  -s, --setup    Run setup commands before starting
+  -a, --attach   Start the app in attached mode
 ```
 
 
 ### `show`
 ```
-usage: show [-h] filter
+usage: show [-h] [-v] [-a]
 
-Show details about an app
-
-positional arguments:
-  filter      The filter to apply (e.g. "alive")
+List configured apps
 
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help     show this help message and exit
+  -v, --verbose  Show error stack traces
+  -a, --alive    Only show running apps
 ```

@@ -15,7 +15,7 @@ def attach(parser):
 def start(parser):
     parser.description = 'Start an app'
     parser.add_argument('app', help='The app to start')
-    parser.add_argument('-s', '--setup', action='store_true', default=False, dest='setup', help='Run setup commands before starting apps')
+    parser.add_argument('-s', '--setup', action='store_true', default=False, dest='setup', help='Run setup commands before starting')
     parser.add_argument('-a', '--attach', action='store_true', default=False, dest='attach', help='Start the app in attached mode')
     args = parser.parse_args()
 
