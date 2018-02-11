@@ -1,29 +1,27 @@
-import os
 import yaml
-from os.path import expanduser
+from os.path import expanduser, join
+
+from app import App
 
 
 class Config(object):
     CONFIG_FILE = '.app_manager.yml'
 
     def __init__(self):
-        with open(os.path.join(expanduser('~'), self.CONFIG_FILE), 'r') as fd:
+        with open(join(expanduser('~'), self.CONFIG_FILE), 'r') as fd:
             self.config = yaml.load(fd.read())
 
-    def project_exists(self, project):
-        return project in self.config.keys()
+    def apps(self):
+        for app_name in self.config.keys():
+            yield self.app(app_name)
 
-    def get_setup_commands(self, project):
-        return self.config[project].get('setup', [])
+    def app(self, name):
+        app_config = self.config.get(name)
 
-    def get_start_command(self, project):
-        return self.config[project]['start']
+        if app_config is None:
+            raise Exception('This app has not been configured')
 
-    def get_all_projects(self):
-        return self.config.keys()
-
-    def get_directory(self, project):
-        return expanduser(self.config[project]['root'])
+        return App(name, app_config.get('root'), app_config.get('start'), app_config.get('setup'))
 
 
 config = Config()
