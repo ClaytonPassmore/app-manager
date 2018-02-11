@@ -1,6 +1,7 @@
 import os
 from time import sleep
 
+import tmux
 from config import config
 from decorators import command_line_wrapper
 from project import Project
@@ -110,7 +111,8 @@ def show(parser):
 
     if args.filter == 'alive':
         try:
-            execute('tmux ls')
+            for session in sorted(tmux.list()):
+                print(session)
         except:
             pass
     elif args.filter == 'all':

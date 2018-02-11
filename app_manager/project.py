@@ -2,6 +2,8 @@ import os
 from config import config
 from utils import execute
 
+import tmux
+
 
 class Project(object):
     def __init__(self, name):
@@ -14,15 +16,10 @@ class Project(object):
 
     def start(self, start_attached=False):
         os.chdir(config.get_directory(self.name))
-
-        opts = '-d -s'
-        if start_attached:
-            opts = '-s'
-
-        execute('tmux new-session {} {} {}'.format(opts, self.name, config.get_start_command(self.name)))
+        tmux.new_session(self.name, config.get_start_command(self.name), attached=start_attached)
 
     def stop(self):
-        execute('tmux send-keys -t {} C-c'.format(self.name))
+        tmux.send_keys(self.name, 'C-c')
 
     def attach(self):
-        execute('tmux attach -t {}'.format(self.name))
+        tmux.attach(self.name)
