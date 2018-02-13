@@ -1,16 +1,17 @@
 import os
 from time import sleep
 
-import tmux
 from config import config
 from utils import execute
 
 
 def attach(app_name):
-    if app_name not in tmux.list():
+    manager = config.manager()
+
+    if app_name not in manager.list():
         raise Exception('This app is not running')
 
-    tmux.attach(app_name)
+    manager.attach(app_name)
 
 
 def start(app_name, setup=False, attach=False):
@@ -22,18 +23,23 @@ def start(app_name, setup=False, attach=False):
         for command in app.setup_commands:
             execute(command)
 
-    tmux.new_session(app.name, app.start_command, attached=attach)
+    manager = config.manager()
+    manager.new_session(app.name, app.start_command, attached=attach)
 
 
 def stop(app_name):
-    if app_name not in tmux.list():
+    manager = config.manager()
+
+    if app_name not in manager.list():
         raise Exception('This app is not running')
 
-    tmux.send_keys(app_name, 'C-c')
+    keys = "$'\cc'" if config.mgr == 'screen' else 'C-c'
+    manager.send_keys(app_name, keys)
 
 
 def show(running_only=False):
-    app_names = tmux.list() if running_only else map(lambda app: app.name, config.apps())
+    manager = config.manager()
+    app_names = manager.list() if running_only else map(lambda app: app.name, config.apps())
 
     for app_name in sorted(app_names):
         print('-> {app}'.format(app=app_name))

@@ -1,10 +1,10 @@
 # App Manager
-Manage your apps with the help of tmux!
+Manage your apps with the help of tmux (or screen)!
 
 ## Install
 Run the following:
 ```bash
-# Install pre-reqs
+# Install pre-reqs (note that you can use screen instead of tmux)
 brew install python && brew install tmux
 
 # Clone the repo
@@ -28,6 +28,13 @@ Fill it with the apps you want to run in the following format:
     - <e.g. bundle install>
 <second project>:
   ...
+```
+
+You can also specify the window manager you would like to use with the `manager` key.
+Tmux is used by default, but screen is also available.
+```yml
+manager: screen
+...
 ```
 
 
