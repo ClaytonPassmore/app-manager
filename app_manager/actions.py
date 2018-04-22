@@ -39,10 +39,12 @@ def stop(app_name):
 
 def show(running_only=False):
     manager = config.manager()
-    app_names = manager.list() if running_only else map(lambda app: app.name, config.apps())
+    running_apps = manager.list()
+    app_names = running_apps if running_only else map(lambda app: app.name, config.apps())
 
     for app_name in sorted(app_names):
-        print('-> {app}'.format(app=app_name))
+        mark = '=>' if app_name in running_apps else '->'
+        print('{mark} {app}'.format(mark=mark, app=app_name))
 
 
 def restart(app_name, setup=False, attach=False):
