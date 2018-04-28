@@ -99,5 +99,19 @@ List configured apps
 optional arguments:
   -h, --help     show this help message and exit
   -v, --verbose  Show error stack traces
-  -a, --alive    Only show running apps
+  -a, --all      Show all apps
+```
+
+### `stop`
+```
+usage: stop [-h] [-v] [app [app ...]]
+
+Stop running apps
+
+positional arguments:
+  app            The app(s) to stop
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -v, --verbose  Show error stack traces
 ```

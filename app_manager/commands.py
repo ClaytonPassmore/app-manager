@@ -24,7 +24,7 @@ def start(parser):
 
 @command_line_wrapper
 def stop(parser):
-    parser.description = 'Stop a running app'
+    parser.description = 'Stop running apps'
     parser.add_argument('apps', metavar='app', nargs='*', help='The app(s) to stop')
     args = parser.parse_args()
 
