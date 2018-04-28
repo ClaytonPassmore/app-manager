@@ -37,6 +37,7 @@ def stop(app_names):
     for app_name in app_names:
         if app_name not in running_apps:
             print('Warning: {app} is not running'.format(app=app_name))
+            continue
 
         keys = "$'\cc'" if config.mgr == 'screen' else 'C-c'
         manager.send_keys(app_name, keys)
