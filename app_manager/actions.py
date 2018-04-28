@@ -42,10 +42,10 @@ def stop(app_names):
         manager.send_keys(app_name, keys)
 
 
-def show(running_only=False):
+def show(all=False):
     manager = config.manager()
     running_apps = manager.list()
-    app_names = running_apps if running_only else map(lambda app: app.name, config.apps())
+    app_names = map(lambda app: app.name, config.apps()) if all else running_apps
 
     for app_name in sorted(app_names):
         mark = '=>' if app_name in running_apps else '->'

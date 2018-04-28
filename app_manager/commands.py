@@ -45,7 +45,7 @@ def restart(parser):
 @command_line_wrapper
 def show(parser):
     parser.description = 'List configured apps'
-    parser.add_argument('-a', '--alive', action='store_true', default=False, dest='alive', help='Only show running apps')
+    parser.add_argument('-a', '--all', action='store_true', default=False, dest='all', help='Show all apps')
     args = parser.parse_args()
 
-    actions.show(running_only=args.alive)
+    actions.show(all=args.all)
