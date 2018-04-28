@@ -2,7 +2,8 @@ import os
 from time import sleep
 
 from config import config
-from utils import execute
+from colours import OK_GREEN, FAIL
+from utils import execute, write, write_line
 
 
 def attach(app_name):
@@ -35,12 +36,14 @@ def stop(app_names):
         app_names = running_apps
 
     for app_name in app_names:
+        write('Stopping {app} ... '.format(app=app_name))
         if app_name not in running_apps:
-            print('Warning: {app} is not running'.format(app=app_name))
+            write_line('fail', colour=FAIL)
             continue
 
         keys = "$'\cc'" if config.mgr == 'screen' else 'C-c'
         manager.send_keys(app_name, keys)
+        write_line('ok', colour=OK_GREEN)
 
 
 def show(all=False):
