@@ -27,14 +27,19 @@ def start(app_name, setup=False, attach=False):
     manager.new_session(app.name, app.start_command, attached=attach)
 
 
-def stop(app_name):
+def stop(app_names):
     manager = config.manager()
+    running_apps = manager.list()
 
-    if app_name not in manager.list():
-        raise Exception('This app is not running')
+    if len(app_names) == 0:
+        app_names = running_apps
 
-    keys = "$'\cc'" if config.mgr == 'screen' else 'C-c'
-    manager.send_keys(app_name, keys)
+    for app_name in app_names:
+        if app_name not in running_apps:
+            print('Warning: {app} is not running'.format(app=app_name))
+
+        keys = "$'\cc'" if config.mgr == 'screen' else 'C-c'
+        manager.send_keys(app_name, keys)
 
 
 def show(running_only=False):

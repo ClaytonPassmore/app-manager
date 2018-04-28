@@ -25,10 +25,10 @@ def start(parser):
 @command_line_wrapper
 def stop(parser):
     parser.description = 'Stop a running app'
-    parser.add_argument('app', help='The app to stop')
+    parser.add_argument('apps', metavar='app', nargs='*', help='The app(s) to stop')
     args = parser.parse_args()
 
-    actions.stop(args.app)
+    actions.stop(args.apps)
 
 
 @command_line_wrapper
