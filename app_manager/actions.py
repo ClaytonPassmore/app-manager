@@ -15,17 +15,24 @@ def attach(app_name):
     manager.attach(app_name)
 
 
-def start(app_name, setup=False, attach=False):
-    app = config.app(app_name)
+def start(app_names, setup=False, attach=False):
+    for app_name in app_names:
+        app = config.app(app_name)
 
-    os.chdir(app.root)
+        os.chdir(app.root)
 
-    if setup:
-        for command in app.setup_commands:
-            execute(command)
+        if setup:
+            for command in app.setup_commands:
+                execute(command)
 
-    manager = config.manager()
-    manager.new_session(app.name, app.start_command, attached=attach)
+        manager = config.manager()
+        write('Starting {app} ... '.format(app=app_name))
+        try:
+            manager.new_session(app.name, app.start_command, attached=attach)
+        except:
+            write_line('fail', colour=FAIL)
+        else:
+            write_line('ok', colour=OK_GREEN)
 
 
 def stop(app_names):
