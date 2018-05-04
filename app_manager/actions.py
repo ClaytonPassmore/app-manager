@@ -64,6 +64,6 @@ def show(all=False):
 
 
 def restart(app_name, setup=False, attach=False):
-    stop(app_name)
+    stop([app_name])
     sleep(1)
-    start(app_name, setup=setup, attach=attach)
+    start([app_name], setup=setup, attach=attach)
