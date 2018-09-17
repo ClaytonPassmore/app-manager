@@ -60,7 +60,8 @@ def show(all=False):
 
     for app_name in sorted(app_names):
         mark = '=>' if app_name in running_apps else '->'
-        print('{mark} {app}'.format(mark=mark, app=app_name))
+        colour = OK_GREEN if app_name in running_apps else ''
+        write_line('{mark} {app}'.format(mark=mark, app=app_name), colour=colour)
 
 
 def restart(app_name, setup=False, attach=False):
